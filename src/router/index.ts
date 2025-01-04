@@ -12,12 +12,45 @@ const router = createRouter({
     {
       path: '/stash',
       name: 'stash',
-      component: () => import('@/views/StashView/index.vue'),
+      component: () => import('@/views/StashView/Index.vue'),
+      redirect: '/select-group',
+      children: [
+        {
+          path: '/select-group',
+          name: 'select-group',
+          component: () => import('@/views/StashView/SelectGroupView.vue'),
+        },
+        {
+          path: '/input-group',
+          name: 'input-group',
+          component: () => import('@/views/StashView/InputGroupView.vue'),
+        },
+        {
+          path: '/advance-group',
+          name: 'advance-group',
+          component: () => import('@/views/StashView/AdvanceGroupView.vue'),
+        },
+        {
+          path: '/note-group',
+          name: 'note-group',
+          component: () => import('@/views/StashView/NoteGroupView.vue'),
+        },
+        {
+          path: '/personal-group',
+          name: 'personal-group',
+          component: () => import('@/views/StashView/PersonalInfoGroupView.vue'),
+        },
+        {
+          path: '/contact-group',
+          name: 'contact-group',
+          component: () => import('@/views/StashView/ContactGroupView.vue'),
+        },
+      ],
     },
     {
       path: '/editor',
       name: 'editor',
-      component: () => import('@/views/EditorView/index.vue'),
+      component: () => import('@/views/EditorView/Index.vue'),
     },
   ],
 })

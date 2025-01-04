@@ -4,7 +4,7 @@
     <!-- 按钮组 -->
     <div class="mb-15">
       <el-button type="primary" :icon="Plus" @click="turnTo('editor')">创建问卷</el-button>
-      <el-button type="success" :icon="House" @click="turnTo('editor')">组件仓库</el-button>
+      <el-button type="success" :icon="House" @click="turnTo('stash')">组件仓库</el-button>
     </div>
     <!-- 表格 -->
     <el-table :data="tableData" style="width: 100%" border>
