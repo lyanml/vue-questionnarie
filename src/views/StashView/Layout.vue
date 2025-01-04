@@ -5,14 +5,19 @@
     </div>
     <div class="center">
       <RouterView v-slot="{ Component }">
-        <component :is="Component"></component>
+        <component :is="Component" :status="status" :nums="1"></component>
       </RouterView>
     </div>
     <div class="right">编辑面板</div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useMaterialStore } from '@/stores/useMaterial'
+import type { MaterialStore } from '@/types'
+const store = useMaterialStore() as unknown as MaterialStore
+const status = store.coms[store.currentMaterialCom].status
+</script>
 
 <style lang="scss" scoped>
 .layout-container {
