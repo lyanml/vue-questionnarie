@@ -19,6 +19,15 @@ const router = createRouter({
           path: '/select-group',
           name: 'select-group',
           component: () => import('@/views/StashView/SelectGroupView.vue'),
+          redirect: '/single-select',
+          children: [
+            {
+              path: '/single-select',
+              name: 'single-select',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+            },
+          ],
         },
         {
           path: '/input-group',

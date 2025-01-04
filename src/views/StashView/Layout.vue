@@ -3,7 +3,11 @@
     <div class="left flex wrap space-between">
       <slot />
     </div>
-    <div class="center">显示选择的组件</div>
+    <div class="center">
+      <RouterView v-slot="{ Component }">
+        <component :is="Component"></component>
+      </RouterView>
+    </div>
     <div class="right">编辑面板</div>
   </div>
 </template>
