@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'text-center': computedState.position }">
     <MaterialsHeader
       :nums="nums"
       :title="computedState.title"

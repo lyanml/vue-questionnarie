@@ -1,5 +1,6 @@
 import type { defineComponent } from 'vue'
 import type { Material } from './material'
+import type { OptionsProps, TextProps } from './editProps'
 export type VueComType = ReturnType<typeof defineComponent>
 
 export interface Status {
@@ -7,6 +8,6 @@ export interface Status {
   name: Material
   id: string
   status: {
-    [key: string]: string
+    [key: string]: TextProps | OptionsProps
   }
 }

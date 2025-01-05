@@ -12,16 +12,16 @@ export interface TextProps extends BaseProps {
 }
 
 export type StringStatusArr = string[]
-export type valueStatusArr = Array<{ value: string; status: string }>
+export type ValueStatusArr = Array<{ value: string; status: string }>
 
-export type StatusArray = StringStatusArr | valueStatusArr
+export type StatusArray = StringStatusArr | ValueStatusArr
 
 export interface OptionsProps extends BaseProps {
-  status: StringStatusArr
+  status: StatusArray
   currentStatus: number
 }
 
-export interface BaseStaus {
+export interface BaseStatus {
   title: TextProps
   desc: TextProps
   position: OptionsProps
@@ -34,12 +34,11 @@ export interface BaseStaus {
   titleColor: TextProps
   descColor: TextProps
 }
-
-export interface TypeStatus extends BaseStaus {
+export interface TypeStatus extends BaseStatus {
   type: OptionsProps
 }
 
-export interface OptionsStatus extends BaseStaus {
+export interface OptionsStatus extends BaseStatus {
   options: OptionsProps
 }
 // 检查props 是否为 TextProps

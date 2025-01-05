@@ -8,15 +8,56 @@
         <component :is="Component" :status="status" :nums="1"></component>
       </RouterView>
     </div>
-    <div class="right">编辑面板</div>
+    <div class="right">
+      <EditPannel :com="currentCom" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import EditPannel from '@/components/SurveyComs/Edititems/EditPannel.vue'
 import { useMaterialStore } from '@/stores/useMaterial'
-import type { MaterialStore } from '@/types'
+import type { MaterialStore, UpdateStatus } from '@/types'
+import { ElMessage } from 'element-plus'
+import { computed, provide } from 'vue'
 const store = useMaterialStore() as unknown as MaterialStore
 const status = store.coms[store.currentMaterialCom].status
+const currentCom = computed(() => store.coms[store.currentMaterialCom])
+const updateStatus: UpdateStatus = (
+  configKey: string,
+  payload?: number | string | boolean | object,
+) => {
+  switch (configKey) {
+    case 'title':
+    case 'desc':
+      if (typeof payload !== 'string') {
+        console.error('payload is invalid')
+      }
+
+      store.setTextStatus(status[configKey], payload)
+      break
+    case 'options':
+      if (typeof payload === 'number') {
+        const flag = store.removeOption(status[configKey], payload)
+        if (flag) {
+          ElMessage.success('删除成功')
+        } else {
+          ElMessage.error('至少保留两个选项')
+        }
+      } else {
+        store.addOption(status[configKey])
+      }
+      break
+    case 'position':
+      console.log(222)
+
+      store.setPosition(status[configKey], payload)
+      break
+    default:
+      console.warn(`Unknown configKey: ${configKey}`)
+  }
+}
+provide('updateStatus', updateStatus)
 </script>
 
 <style lang="scss" scoped>
