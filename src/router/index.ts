@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useMaterialStore } from '@/stores/useMaterial'
+import type { Material } from '@/types'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +28,30 @@ const router = createRouter({
               name: 'single-select',
               component: () =>
                 import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+            },
+            {
+              path: '/multi-select',
+              name: 'multi-select',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/MultiSelect.vue'),
+            },
+            {
+              path: '/option-select',
+              name: 'option-select',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/OptionSelect.vue'),
+            },
+            {
+              path: '/single-pic-select',
+              name: 'single-pic-select',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SinglePicSelect.vue'),
+            },
+            {
+              path: '/multi-pic-select',
+              name: 'multi-pic-select',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/MultiPicSelect.vue'),
             },
           ],
         },
@@ -62,6 +88,14 @@ const router = createRouter({
       component: () => import('@/views/EditorView/Index.vue'),
     },
   ],
+})
+
+router.beforeEach((to, _, next) => {
+  const store = useMaterialStore()
+  if (to.name) {
+    store.setCurrentMaterialCom(to.name as Material)
+  }
+  next()
 })
 
 export default router

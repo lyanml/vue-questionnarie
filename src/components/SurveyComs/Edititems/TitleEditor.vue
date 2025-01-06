@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="id">
     <div class="mb-10">标题内容</div>
     <el-input
       placeholer="请输入题目标题"

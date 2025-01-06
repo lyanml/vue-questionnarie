@@ -5,7 +5,11 @@
     </div>
     <div class="center">
       <RouterView v-slot="{ Component }">
-        <component :is="Component" :status="status" :nums="1"></component>
+        <component
+          :is="Component"
+          :status="store.coms[store.currentMaterialCom].status"
+          :nums="1"
+        ></component>
       </RouterView>
     </div>
     <div class="right">
@@ -21,19 +25,18 @@ import type { MaterialStore, UpdateStatus } from '@/types'
 import { ElMessage } from 'element-plus'
 import { computed, provide } from 'vue'
 const store = useMaterialStore() as unknown as MaterialStore
-const status = store.coms[store.currentMaterialCom].status
 const currentCom = computed(() => store.coms[store.currentMaterialCom])
 const updateStatus: UpdateStatus = (
   configKey: string,
   payload?: number | string | boolean | object,
 ) => {
+  const status = store.coms[store.currentMaterialCom].status
   switch (configKey) {
     case 'title':
     case 'desc':
       if (typeof payload !== 'string') {
         console.error('payload is invalid')
       }
-
       store.setTextStatus(status[configKey], payload)
       break
     case 'options':
