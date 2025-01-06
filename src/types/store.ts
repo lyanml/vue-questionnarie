@@ -13,6 +13,7 @@ export interface Actions {
   setWeight: (weightProps: OptionsProps, index: number) => void
   setColor: (colorProps: TextProps, color: string) => void
   setPicLinkByIndex: (optionsProps: OptionsProps, payload: PicLink) => void
+  setTextType: (typeProps: OptionsProps, index: number) => void
 }
 
 export interface MaterialStore extends Actions {

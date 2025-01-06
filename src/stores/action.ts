@@ -50,3 +50,7 @@ export function setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) 
   if (isPicTitleDescArray(optionsProps.status))
     optionsProps.status[payload.index].value = payload.link
 }
+
+export function setTextType(typeProps: OptionsProps, index: number) {
+  typeProps.currentStatus = index
+}

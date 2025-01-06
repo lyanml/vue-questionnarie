@@ -25,11 +25,12 @@ import {
   isPicLink,
   type GetLink,
   type MaterialStore,
-  type OptionsProps,
+  type OptionsStatus,
   type PicLink,
+  type TypeStatus,
   type UpdateStatus,
 } from '@/types'
-import { ElMessage, type TextProps } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import { computed, provide } from 'vue'
 const store = useMaterialStore() as unknown as MaterialStore
 const currentCom = computed(() => store.coms[store.currentMaterialCom])
@@ -38,9 +39,16 @@ const updateStatus: UpdateStatus = (
   payload?: number | string | boolean | object,
 ) => {
   const statusKey = store.coms[store.currentMaterialCom].status[configKey] as unknown as
-    | TextProps
-    | OptionsProps
+    | TypeStatus
+    | OptionsStatus
   switch (configKey) {
+    case 'type':
+      if (statusKey) {
+        if (typeof payload === 'number') {
+          store.setTextType(statusKey, payload)
+        }
+      }
+      break
     case 'title':
     case 'desc':
       if (typeof payload !== 'string') {

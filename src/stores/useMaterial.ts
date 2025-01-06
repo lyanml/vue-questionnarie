@@ -9,6 +9,7 @@ import {
   setPosition,
   setSize,
   setTextStatus,
+  setTextType,
   setWeight,
 } from './action'
 import type { Material } from '@/types'
@@ -22,6 +23,7 @@ export const useMaterialStore = defineStore('materialStore', {
       'option-select': defaultStatusMap['option-select'](),
       'single-pic-select': defaultStatusMap['single-pic-select'](),
       'multi-pic-select': defaultStatusMap['multi-pic-select'](),
+      'text-input': defaultStatusMap['text-input'](),
     },
   }),
   actions: {
@@ -37,5 +39,6 @@ export const useMaterialStore = defineStore('materialStore', {
     setItalic,
     setColor,
     setPicLinkByIndex,
+    setTextType,
   },
 })
