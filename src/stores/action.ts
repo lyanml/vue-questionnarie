@@ -19,3 +19,17 @@ export function removeOption(optionProps: OptionsProps, index: number): boolean 
 export function setPosition(positionProps: OptionsProps, index: number) {
   positionProps.currentStatus = index
 }
+
+export function setSize(sizeProps: OptionsProps, index: number) {
+  sizeProps.currentStatus = index
+}
+
+export function setWeight(weightProps: OptionsProps, index: number) {
+  weightProps.currentStatus = index
+}
+export function setItalic(italicProps: OptionsProps, index: number) {
+  italicProps.currentStatus = index
+}
+export function setColor(colorProps: TextProps, color: string) {
+  colorProps.status = color
+}

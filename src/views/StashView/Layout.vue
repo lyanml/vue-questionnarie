@@ -49,9 +49,34 @@ const updateStatus: UpdateStatus = (
       }
       break
     case 'position':
-      console.log(222)
-
       store.setPosition(status[configKey], payload)
+      break
+    case 'titleSize':
+    case 'descSize':
+      if (typeof payload === 'number') {
+        store.setSize(status[configKey], payload)
+      }
+      break
+    case 'titleItalic':
+    case 'descItalic':
+      if (typeof payload === 'number') {
+        store.setItalic(status[configKey], payload)
+      }
+      store.setItalic(status[configKey], payload)
+      break
+    case 'titleWeight':
+    case 'descWeight':
+      if (typeof payload === 'number') {
+        store.setWeight(status[configKey], payload)
+      }
+      store.setWeight(status[configKey], payload)
+      break
+    case 'titleColor':
+    case 'descColor':
+      if (typeof payload === 'string') {
+        store.setColor(status[configKey], payload)
+      }
+      store.setColor(status[configKey], payload)
       break
     default:
       console.warn(`Unknown configKey: ${configKey}`)

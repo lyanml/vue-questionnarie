@@ -1,6 +1,15 @@
 import { defineStore } from 'pinia'
 import { defaultStatusMap } from '@/configs/defaultStatus/defaultStatusMap'
-import { addOption, removeOption, setPosition, setTextStatus } from './action'
+import {
+  addOption,
+  removeOption,
+  setColor,
+  setItalic,
+  setPosition,
+  setSize,
+  setTextStatus,
+  setWeight,
+} from './action'
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
     currentMaterialCom: 'single-select', // 当前选中的组件
@@ -14,5 +23,9 @@ export const useMaterialStore = defineStore('materialStore', {
     addOption,
     removeOption,
     setPosition,
+    setSize,
+    setWeight,
+    setItalic,
+    setColor,
   },
 })

@@ -8,6 +8,10 @@ export interface Actions {
   addOption: (optionProps: OptionsProps) => void
   removeOption: (optionProps: OptionsProps, index: number) => boolean
   setPosition: (positionProps: OptionsProps, index: number) => void
+  setSize: (sizeProps: OptionsProps, index: number) => void
+  setItalic: (italicProps: OptionsProps, index: number) => void
+  setWeight: (weightProps: OptionsProps, index: number) => void
+  setColor: (colorProps: TextProps, color: string) => void
 }
 
 export interface MaterialStore extends Actions {
