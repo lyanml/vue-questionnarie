@@ -21,8 +21,15 @@
 <script setup lang="ts">
 import EditPannel from '@/components/SurveyComs/Edititems/EditPannel.vue'
 import { useMaterialStore } from '@/stores/useMaterial'
-import type { MaterialStore, UpdateStatus } from '@/types'
-import { ElMessage } from 'element-plus'
+import {
+  isPicLink,
+  type GetLink,
+  type MaterialStore,
+  type OptionsProps,
+  type PicLink,
+  type UpdateStatus,
+} from '@/types'
+import { ElMessage, type TextProps } from 'element-plus'
 import { computed, provide } from 'vue'
 const store = useMaterialStore() as unknown as MaterialStore
 const currentCom = computed(() => store.coms[store.currentMaterialCom])
@@ -30,62 +37,71 @@ const updateStatus: UpdateStatus = (
   configKey: string,
   payload?: number | string | boolean | object,
 ) => {
-  const status = store.coms[store.currentMaterialCom].status
+  const statusKey = store.coms[store.currentMaterialCom].status[configKey] as unknown as
+    | TextProps
+    | OptionsProps
   switch (configKey) {
     case 'title':
     case 'desc':
       if (typeof payload !== 'string') {
         console.error('payload is invalid')
+        return
       }
-      store.setTextStatus(status[configKey], payload)
+      store.setTextStatus(statusKey, payload)
       break
     case 'options':
       if (typeof payload === 'number') {
-        const flag = store.removeOption(status[configKey], payload)
+        const flag = store.removeOption(statusKey, payload)
         if (flag) {
           ElMessage.success('删除成功')
         } else {
           ElMessage.error('至少保留两个选项')
         }
+      } else if (typeof payload === 'object' && isPicLink(payload)) {
+        store.setPicLinkByIndex(statusKey, payload)
       } else {
-        store.addOption(status[configKey])
+        store.addOption(statusKey)
       }
       break
     case 'position':
-      store.setPosition(status[configKey], payload)
+      store.setPosition(statusKey, payload)
       break
     case 'titleSize':
     case 'descSize':
       if (typeof payload === 'number') {
-        store.setSize(status[configKey], payload)
+        store.setSize(statusKey, payload)
       }
       break
     case 'titleItalic':
     case 'descItalic':
       if (typeof payload === 'number') {
-        store.setItalic(status[configKey], payload)
+        store.setItalic(statusKey, payload)
       }
-      store.setItalic(status[configKey], payload)
+      store.setItalic(statusKey, payload)
       break
     case 'titleWeight':
     case 'descWeight':
       if (typeof payload === 'number') {
-        store.setWeight(status[configKey], payload)
+        store.setWeight(statusKey, payload)
       }
-      store.setWeight(status[configKey], payload)
+      store.setWeight(statusKey, payload)
       break
     case 'titleColor':
     case 'descColor':
       if (typeof payload === 'string') {
-        store.setColor(status[configKey], payload)
+        store.setColor(statusKey, payload)
       }
-      store.setColor(status[configKey], payload)
+      store.setColor(statusKey, payload)
       break
     default:
       console.warn(`Unknown configKey: ${configKey}`)
   }
 }
 provide('updateStatus', updateStatus)
+const getPicLink: GetLink = (link: PicLink) => {
+  updateStatus('options', link)
+}
+provide('getPicLink', getPicLink)
 </script>
 
 <style lang="scss" scoped>

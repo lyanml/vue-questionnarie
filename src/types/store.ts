@@ -12,6 +12,7 @@ export interface Actions {
   setItalic: (italicProps: OptionsProps, index: number) => void
   setWeight: (weightProps: OptionsProps, index: number) => void
   setColor: (colorProps: TextProps, color: string) => void
+  setPicLinkByIndex: (optionsProps: OptionsProps, payload: PicLink) => void
 }
 
 export interface MaterialStore extends Actions {
@@ -20,3 +21,18 @@ export interface MaterialStore extends Actions {
 }
 
 export type UpdateStatus = (configKey: string, payload?: number | string | boolean | object) => void
+
+export type PicLink = { link: string; index: number }
+
+export type GetLink = (obj: PicLink) => void
+
+export function isPicLink(obj: object): obj is PicLink {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'link' in obj &&
+    typeof (obj as PicLink).link === 'string' &&
+    'index' in obj &&
+    typeof (obj as PicLink).index === 'number'
+  )
+}

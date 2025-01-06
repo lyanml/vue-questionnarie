@@ -13,8 +13,12 @@ export interface TextProps extends BaseProps {
 
 export type StringStatusArr = string[]
 export type ValueStatusArr = Array<{ value: string; status: string }>
-
-export type StatusArray = StringStatusArr | ValueStatusArr
+export type PicTitleDescStatusArr = Array<{
+  picTitle: string
+  picDesc: string
+  value: string
+}>
+export type StatusArray = StringStatusArr | ValueStatusArr | PicTitleDescStatusArr
 
 export interface OptionsProps extends BaseProps {
   status: StatusArray
@@ -52,4 +56,26 @@ export function isOptionsProps(props: TextProps | OptionsProps): props is Option
 // 检查 status 是否为string[]
 export function isStringArray(status: StatusArray): status is string[] {
   return Array.isArray(status) && (status.length === 0 || typeof status[0] === 'string')
+}
+
+// 检查status 是否为 Array<{value:string;status: string}>
+export function isValueStatusArray(status: StatusArray): status is ValueStatusArr {
+  return (
+    Array.isArray(status) &&
+    status.length > 0 &&
+    typeof status[0] === 'object' &&
+    'value' in status[0] &&
+    'status' in status[0]
+  )
+}
+
+// 检查 status 是否为 Array<{ picTitle: string; picDesc: string }>
+export function isPicTitleDescArray(status: StatusArray): status is PicTitleDescStatusArr {
+  return (
+    Array.isArray(status) &&
+    status.length > 0 &&
+    typeof status[0] === 'object' &&
+    'picTitle' in status[0] &&
+    'picDesc' in status[0]
+  )
 }

@@ -1,4 +1,10 @@
-import { isStringArray, type OptionsProps, type TextProps } from '@/types'
+import {
+  isPicTitleDescArray,
+  isStringArray,
+  type OptionsProps,
+  type PicLink,
+  type TextProps,
+} from '@/types'
 
 export function setTextStatus(textProps: TextProps, text: string) {
   textProps.status = text
@@ -7,6 +13,12 @@ export function setTextStatus(textProps: TextProps, text: string) {
 export function addOption(optionProps: OptionsProps) {
   if (isStringArray(optionProps.status)) {
     optionProps.status.push('新增选项')
+  } else if (isPicTitleDescArray(optionProps.status)) {
+    optionProps.status.push({
+      value: '',
+      picTitle: `新增图片标题`,
+      picDesc: `说明（选填，限30字）`,
+    })
   }
 }
 
@@ -32,4 +44,9 @@ export function setItalic(italicProps: OptionsProps, index: number) {
 }
 export function setColor(colorProps: TextProps, color: string) {
   colorProps.status = color
+}
+
+export function setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) {
+  if (isPicTitleDescArray(optionsProps.status))
+    optionsProps.status[payload.index].value = payload.link
 }

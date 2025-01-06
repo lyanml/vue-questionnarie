@@ -5,6 +5,7 @@ import {
   removeOption,
   setColor,
   setItalic,
+  setPicLinkByIndex,
   setPosition,
   setSize,
   setTextStatus,
@@ -18,12 +19,13 @@ export const useMaterialStore = defineStore('materialStore', {
       // 所有的业务组件
       'single-select': defaultStatusMap['single-select'](),
       'multi-select': defaultStatusMap['multi-select'](),
+      'option-select': defaultStatusMap['option-select'](),
+      'single-pic-select': defaultStatusMap['single-pic-select'](),
+      'multi-pic-select': defaultStatusMap['multi-pic-select'](),
     },
   }),
   actions: {
     setCurrentMaterialCom(com: Material) {
-      console.log('useMaterial change current MatereialCom')
-
       this.currentMaterialCom = com
     },
     setTextStatus,
@@ -34,5 +36,6 @@ export const useMaterialStore = defineStore('materialStore', {
     setWeight,
     setItalic,
     setColor,
+    setPicLinkByIndex,
   },
 })
