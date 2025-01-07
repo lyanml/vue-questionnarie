@@ -1,4 +1,4 @@
-import type { TextProps } from 'element-plus'
+import type { TextProps } from './editProps'
 import type { Status } from './common'
 import type { Material } from './material'
 import type { OptionsProps } from './editProps'
@@ -14,6 +14,11 @@ export interface Actions {
   setColor: (colorProps: TextProps, color: string) => void
   setPicLinkByIndex: (optionsProps: OptionsProps, payload: PicLink) => void
   setTextType: (typeProps: OptionsProps, index: number) => void
+  setUse: (optionsProps: OptionsProps, isUse: boolean) => void
+  setOptionsStatusByIndex: (
+    optionsProps: OptionsProps,
+    payload: optionsStatusByIndexPayload,
+  ) => void
 }
 
 export interface MaterialStore extends Actions {
@@ -35,5 +40,21 @@ export function isPicLink(obj: object): obj is PicLink {
     typeof (obj as PicLink).link === 'string' &&
     'index' in obj &&
     typeof (obj as PicLink).index === 'number'
+  )
+}
+
+export type optionsStatusByIndexPayload = {
+  val: string
+  index: number
+}
+
+export function isOptionsStatusByIndexPayload(obj: object): obj is optionsStatusByIndexPayload {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'val' in obj &&
+    typeof (obj as optionsStatusByIndexPayload).val === 'string' &&
+    'index' in obj &&
+    typeof (obj as optionsStatusByIndexPayload).index === 'number'
   )
 }

@@ -2,6 +2,7 @@ import {
   isPicTitleDescArray,
   isStringArray,
   type OptionsProps,
+  type optionsStatusByIndexPayload,
   type PicLink,
   type TextProps,
 } from '@/types'
@@ -53,4 +54,15 @@ export function setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) 
 
 export function setTextType(typeProps: OptionsProps, index: number) {
   typeProps.currentStatus = index
+}
+
+export function setUse(optionsProps: OptionsProps, isUse: boolean) {
+  optionsProps.isUse = isUse
+}
+
+export function setOptionsStatusByIndex(
+  optionsProps: OptionsProps,
+  payload: optionsStatusByIndexPayload,
+) {
+  optionsProps.status[payload.index] = payload.val
 }

@@ -22,6 +22,9 @@
 import EditPannel from '@/components/SurveyComs/Edititems/EditPannel.vue'
 import { useMaterialStore } from '@/stores/useMaterial'
 import {
+  hasOptions,
+  hasType,
+  isOptionsStatusByIndexPayload,
   isPicLink,
   type GetLink,
   type MaterialStore,
@@ -38,14 +41,14 @@ const updateStatus: UpdateStatus = (
   configKey: string,
   payload?: number | string | boolean | object,
 ) => {
-  const statusKey = store.coms[store.currentMaterialCom].status[configKey] as unknown as
+  const status = store.coms[store.currentMaterialCom].status as unknown as
     | TypeStatus
     | OptionsStatus
   switch (configKey) {
     case 'type':
-      if (statusKey) {
+      if (hasType(status)) {
         if (typeof payload === 'number') {
-          store.setTextType(statusKey, payload)
+          store.setTextType(status[configKey], payload)
         }
       }
       break
@@ -55,51 +58,56 @@ const updateStatus: UpdateStatus = (
         console.error('payload is invalid')
         return
       }
-      store.setTextStatus(statusKey, payload)
+      store.setTextStatus(status[configKey], payload)
       break
     case 'options':
-      if (typeof payload === 'number') {
-        const flag = store.removeOption(statusKey, payload)
-        if (flag) {
-          ElMessage.success('删除成功')
+      if (hasOptions(status)) {
+        if (typeof payload === 'number') {
+          const flag = store.removeOption(status[configKey], payload)
+          if (flag) {
+            ElMessage.success('删除成功')
+          } else {
+            ElMessage.error('至少保留两个选项')
+          }
+        } else if (typeof payload === 'boolean') {
+          store.setUse(status[configKey], payload)
+        } else if (typeof payload === 'object' && isOptionsStatusByIndexPayload(payload)) {
+          store.setOptionsStatusByIndex(status[configKey], payload)
+        } else if (typeof payload === 'object' && isPicLink(payload)) {
+          store.setPicLinkByIndex(status[configKey], payload)
         } else {
-          ElMessage.error('至少保留两个选项')
+          store.addOption(status[configKey])
         }
-      } else if (typeof payload === 'object' && isPicLink(payload)) {
-        store.setPicLinkByIndex(statusKey, payload)
-      } else {
-        store.addOption(statusKey)
       }
       break
     case 'position':
-      store.setPosition(statusKey, payload)
+      if (typeof payload === 'number') {
+        store.setPosition(status[configKey], payload)
+      }
       break
     case 'titleSize':
     case 'descSize':
       if (typeof payload === 'number') {
-        store.setSize(statusKey, payload)
+        store.setSize(status[configKey], payload)
       }
       break
     case 'titleItalic':
     case 'descItalic':
       if (typeof payload === 'number') {
-        store.setItalic(statusKey, payload)
+        store.setItalic(status[configKey], payload)
       }
-      store.setItalic(statusKey, payload)
       break
     case 'titleWeight':
     case 'descWeight':
       if (typeof payload === 'number') {
-        store.setWeight(statusKey, payload)
+        store.setWeight(status[configKey], payload)
       }
-      store.setWeight(statusKey, payload)
       break
     case 'titleColor':
     case 'descColor':
-      if (typeof payload === 'string') {
-        store.setColor(statusKey, payload)
+      if (payload && typeof payload === 'string') {
+        store.setColor(status[configKey], payload)
       }
-      store.setColor(statusKey, payload)
       break
     default:
       console.warn(`Unknown configKey: ${configKey}`)

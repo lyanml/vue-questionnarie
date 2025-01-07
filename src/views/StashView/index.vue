@@ -17,11 +17,11 @@
           <el-icon><Files /></el-icon>
           <div>高级题型</div>
         </Router-link>
-        <Router-link class="category-item" to="/note-group">
+        <!-- <Router-link class="category-item" to="/note-group">
           <el-icon><ChatLineSquare /></el-icon>
           <div>备注说明</div>
-        </Router-link>
-        <Router-link class="category-item" to="/personal-group">
+        </Router-link> -->
+        <Router-link class="category-item" to="/personal-info-group">
           <el-icon><User /></el-icon>
           <div>个人信息</div>
         </Router-link>
@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import Header from '@/components/commons/Header.vue'
-import { CircleCheck, EditPen, Files, ChatLineSquare, User, Message } from '@element-plus/icons-vue'
+import { CircleCheck, EditPen, Files, User, Message } from '@element-plus/icons-vue'
 </script>
 
 <style lang="scss" scoped>

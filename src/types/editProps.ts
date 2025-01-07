@@ -5,6 +5,7 @@ export interface BaseProps {
   isShow: boolean
   name: string
   editCom: VueComType
+  isUse?: boolean
 }
 
 export interface TextProps extends BaseProps {
@@ -45,6 +46,16 @@ export interface TypeStatus extends BaseStatus {
 export interface OptionsStatus extends BaseStatus {
   options: OptionsProps
 }
+// 检查是否有 type 属性
+export function hasType(status: BaseStatus): status is TypeStatus {
+  return (status as TypeStatus).type !== undefined
+}
+
+// 检查是否有 options 属性
+export function hasOptions(status: BaseStatus): status is OptionsStatus {
+  return (status as OptionsStatus).options !== undefined
+}
+
 // 检查props 是否为 TextProps
 export function isTextProps(props: TextProps | OptionsProps): props is TextProps {
   return typeof props.status === 'string'
