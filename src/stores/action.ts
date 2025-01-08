@@ -5,6 +5,7 @@ import {
   type optionsStatusByIndexPayload,
   type PicLink,
   type TextProps,
+  type TypeStatus,
 } from '@/types'
 
 export function setTextStatus(textProps: TextProps, text: string) {
@@ -65,4 +66,19 @@ export function setOptionsStatusByIndex(
   payload: optionsStatusByIndexPayload,
 ) {
   optionsProps.status[payload.index] = payload.val
+}
+export function setType(status: TypeStatus, payload: number) {
+  if (payload !== status.type.currentStatus) {
+    status.title.isShow = !status.title.isShow
+    status.desc.isShow = !status.desc.isShow
+    status.position.isShow = !status.position.isShow
+    status.titleSize.isShow = !status.titleSize.isShow
+    status.descSize.isShow = !status.descSize.isShow
+    status.titleWeight.isShow = !status.titleWeight.isShow
+    status.descWeight.isShow = !status.descWeight.isShow
+    status.titleItalic.isShow = !status.titleItalic.isShow
+    status.descItalic.isShow = !status.descItalic.isShow
+    status.titleColor.isShow = !status.titleColor.isShow
+    status.descColor.isShow = !status.descColor.isShow
+  }
 }

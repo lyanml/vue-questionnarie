@@ -26,7 +26,11 @@ export interface MaterialStore extends Actions {
   coms: Record<Material, Status>
 }
 
-export type UpdateStatus = (configKey: string, payload?: number | string | boolean | object) => void
+export type UpdateStatus = (
+  configKey: string,
+  payload?: number | string | boolean | object,
+  isShowChange?: boolean,
+) => void
 
 export type PicLink = { link: string; index: number }
 
@@ -57,4 +61,15 @@ export function isOptionsStatusByIndexPayload(obj: object): obj is optionsStatus
     'index' in obj &&
     typeof (obj as optionsStatusByIndexPayload).index === 'number'
   )
+}
+
+export interface EditorStore extends Actions {
+  currentComponentIndex: number
+  surveyCount: number
+  coms: Status[]
+  setCurrentComponentIndex: (index: number) => void
+  addCom: (coms: Status[], newCom: Status) => void
+  initStore: () => void
+  removeCom: (index: number) => void
+  resetComs: () => void
 }

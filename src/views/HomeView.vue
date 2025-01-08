@@ -3,8 +3,8 @@
     <h1 class="font-weight-100 text-center">低代码问卷系统</h1>
     <!-- 按钮组 -->
     <div class="mb-15">
-      <el-button type="primary" :icon="Plus" @click="turnTo('editor')">创建问卷</el-button>
-      <el-button type="success" :icon="House" @click="turnTo('stash')">组件仓库</el-button>
+      <el-button type="primary" :icon="Plus" @click="turnTo('/editor/survey-type')">创建问卷</el-button>
+      <el-button type="success" :icon="House" @click="turnTo('/stash')">组件仓库</el-button>
     </div>
     <!-- 表格 -->
     <el-table :data="tableData" style="width: 100%" border>
@@ -30,7 +30,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const turnTo = (target: string) => {
-  router.push(`/${target}`)
+  router.push(`${target}`)
 }
 const tableData = ref([
   { createDate: '2022-09-22', title: '问卷1', nums: 10, updateDate: '2022-09-22' },

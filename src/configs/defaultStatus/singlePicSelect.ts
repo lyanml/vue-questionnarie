@@ -10,8 +10,9 @@ import ColorEditor from '@/components/SurveyComs/EditItems/ColorEditor.vue'
 import PicOptionsEditor from '@/components/SurveyComs/EditItems/PicOptionsEditor.vue'
 import { markRaw } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
+import type { Status } from '@/types'
 
-export default function () {
+export default function (): Status {
   return {
     type: markRaw(SinglePicSelect),
     name: 'multi-select',

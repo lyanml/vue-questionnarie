@@ -157,3 +157,20 @@ export const updateInitStatusBeforeAdd = (comStatus: Status, newMaterialName: Ma
     }
   }
 }
+
+export function handleScroll(event: WheelEvent) {
+  const target = event.currentTarget as HTMLElement
+
+  // 使用 Math.round() 将值转换为整数
+  const scrollTop = Math.round(target.scrollTop)
+  const scrollHeight = Math.round(target.scrollHeight)
+  const clientHeight = Math.round(target.clientHeight)
+
+  const isAtTop = scrollTop === 0
+  const isAtBottom = scrollHeight - scrollTop === clientHeight
+
+  if ((isAtTop && event.deltaY < 0) || (isAtBottom && event.deltaY > 0)) {
+    event.preventDefault()
+    event.stopPropagation()
+  }
+}

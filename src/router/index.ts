@@ -92,6 +92,14 @@ const router = createRouter({
           path: '/note-group',
           name: 'note-group',
           component: () => import('@/views/StashView/NoteGroupView.vue'),
+          redirect: '/text-note',
+          children: [
+            {
+              path: '/text-note',
+              name: 'text-note',
+              component: () => import('@/components/SurveyComs/Materials/NoteComs/TextNote.vue'),
+            },
+          ],
         },
         {
           path: '/personal-info-group',
@@ -205,6 +213,18 @@ const router = createRouter({
       path: '/editor',
       name: 'editor',
       component: () => import('@/views/EditorView/Index.vue'),
+      children: [
+        {
+          path: 'survey-type',
+          name: 'survey-type',
+          component: () => import('@/views/EditorView/LeftSide/SurveyType.vue'),
+        },
+        {
+          path: 'outline',
+          name: 'outline',
+          component: () => import('@/views/EditorView/LeftSide/Outline.vue'),
+        },
+      ],
     },
   ],
 })

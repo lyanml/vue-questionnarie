@@ -1,5 +1,6 @@
-import RateScore from '@/components/SurveyComs/Materials/AdvancedComs/RateScore.vue'
-
+import TextNote from '@/components/SurveyComs/Materials/NoteComs/TextNote.vue'
+import type { Status } from '@/types'
+import TextTypeEditor from '@/components/SurveyComs/EditItems/TextTypeEditor.vue'
 import TitleEditor from '@/components/SurveyComs/EditItems/TitleEditor.vue'
 import DescEditor from '@/components/SurveyComs/EditItems/DescEditor.vue'
 import PositionEditor from '@/components/SurveyComs/EditItems/PositionEditor.vue'
@@ -7,109 +8,106 @@ import SizeEditor from '@/components/SurveyComs/EditItems/SizeEditor.vue'
 import WeightEditor from '@/components/SurveyComs/EditItems/WeightEditor.vue'
 import ItalicEditor from '@/components/SurveyComs/EditItems/ItalicEditor.vue'
 import ColorEditor from '@/components/SurveyComs/EditItems/ColorEditor.vue'
-import rateTextEditor from '@/components/SurveyComs/EditItems/rateTextEditor.vue'
 import { markRaw } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
-import type { Status } from '@/types'
 
 export default function (): Status {
   return {
-    type: markRaw(RateScore),
-    name: 'rate-score',
+    type: markRaw(TextNote),
+    name: 'text-note',
     id: uuidv4(),
     status: {
-      title: {
-        id: uuidv4(),
-        status: '默认评价/打分题目标题',
+      type: {
+        currentStatus: 1,
+        status: ['标题', '段落'],
         isShow: true,
-        name: 'title-editor',
+        name: 'text-type-editor',
+        editCom: markRaw(TextTypeEditor),
+        id: uuidv4(),
+      },
+      title: {
+        status: '默认标题内容',
+        isShow: false,
         editCom: markRaw(TitleEditor),
+        name: 'title-editor',
+        id: uuidv4(),
       },
       desc: {
-        id: uuidv4(),
-        status: '默认评价/打分题目描述内容',
+        status: '默认描述内容',
         isShow: true,
         name: 'desc-editor',
         editCom: markRaw(DescEditor),
-      },
-      options: {
         id: uuidv4(),
-        currentStatus: 0,
-        status: ['非常不满意', '不满意', '一般', '满意', '非常满意'],
-        isShow: true,
-        isUse: false,
-        name: 'rate-text-editor',
-        editCom: markRaw(rateTextEditor),
       },
       position: {
-        id: uuidv4(),
         currentStatus: 0,
         status: ['左对齐', '居中对齐'],
         isShow: true,
         name: 'position-editor',
         editCom: markRaw(PositionEditor),
+        id: uuidv4(),
       },
       titleSize: {
-        id: uuidv4(),
         currentStatus: 0,
-        status: ['22', '20', '18'],
-        isShow: true,
+        status: ['26', '24', '22'],
+        isShow: false,
         name: 'size-editor',
         editCom: markRaw(SizeEditor),
+        id: uuidv4(),
       },
       descSize: {
-        id: uuidv4(),
         currentStatus: 0,
         status: ['16', '14', '12'],
         isShow: true,
         name: 'size-editor',
         editCom: markRaw(SizeEditor),
+        id: uuidv4(),
       },
       titleWeight: {
-        id: uuidv4(),
         currentStatus: 1,
         status: ['加粗', '正常'],
-        isShow: true,
+        isShow: false,
         name: 'weight-editor',
         editCom: markRaw(WeightEditor),
+        id: uuidv4(),
       },
       descWeight: {
-        id: uuidv4(),
         currentStatus: 1,
         status: ['加粗', '正常'],
         isShow: true,
         name: 'weight-editor',
         editCom: markRaw(WeightEditor),
+        id: uuidv4(),
       },
       titleItalic: {
-        id: uuidv4(),
         currentStatus: 1,
         status: ['斜体', '正常'],
-        isShow: true,
+        isShow: false,
         name: 'italic-editor',
         editCom: markRaw(ItalicEditor),
+        id: uuidv4(),
       },
       descItalic: {
-        id: uuidv4(),
         currentStatus: 1,
         status: ['斜体', '正常'],
         isShow: true,
         name: 'italic-editor',
         editCom: markRaw(ItalicEditor),
+        id: uuidv4(),
       },
       titleColor: {
-        id: uuidv4(),
         status: '#000',
-        isShow: true,
+        isShow: false,
         name: 'color-editor',
         editCom: markRaw(ColorEditor),
+        id: uuidv4(),
       },
       descColor: {
-        id: uuidv4(),
         status: '#909399',
         isShow: true,
         name: 'color-editor',
         editCom: markRaw(ColorEditor),
+        id: uuidv4(),
       },
     },
   }

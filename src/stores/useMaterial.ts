@@ -59,6 +59,7 @@ export const useMaterialStore = defineStore('materialStore', {
       'text-input': defaultStatusMap['text-input'](),
       'rate-score': defaultStatusMap['rate-score'](),
       'date-time': defaultStatusMap['date-time'](),
+      'text-note': defaultStatusMap['text-note'](),
       'personal-info-name': initializedStates['personal-info-name'],
       'personal-info-id': initializedStates['personal-info-id'],
       'personal-info-tel': initializedStates['personal-info-tel'],
@@ -80,7 +81,9 @@ export const useMaterialStore = defineStore('materialStore', {
   }),
   actions: {
     setCurrentMaterialCom(com: Material) {
-      this.currentMaterialCom = com
+      if (com in defaultStatusMap) {
+        this.currentMaterialCom = com
+      }
     },
     setTextStatus,
     addOption,

@@ -41,8 +41,6 @@ function addOptionHandle() {
 }
 function removeOptionHandle(index: number) {
   if (!updateStatus) return
-  console.log(props.configKey, index)
-
   updateStatus(props.configKey, index)
 }
 </script>

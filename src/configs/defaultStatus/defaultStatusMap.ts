@@ -6,8 +6,10 @@ import multiPicSelectDefaultStatus from './multiPicSelect'
 import textInputDefaultStatus from './textInput'
 import rateScoreDefaultStatus from './RateScore'
 import dateTimeDefaultStatus from './DateTime'
+import textNoteDefaultStatus from './textNote'
 
-export const defaultStatusMap = {
+import type { DefaultStatusMap } from '@/types'
+export const defaultStatusMap: DefaultStatusMap = {
   'single-select': singleSelectDefaultStatus,
   'multi-select': multiSelectDefaultStatus,
   'option-select': optionSelectDefaultStatus,
@@ -16,6 +18,7 @@ export const defaultStatusMap = {
   'text-input': textInputDefaultStatus,
   'rate-score': rateScoreDefaultStatus,
   'date-time': dateTimeDefaultStatus,
+  'text-note': textNoteDefaultStatus,
   'personal-info-name': textInputDefaultStatus,
   'personal-info-id': textInputDefaultStatus,
   'personal-info-tel': textInputDefaultStatus,
