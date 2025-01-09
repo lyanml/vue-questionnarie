@@ -2,6 +2,7 @@ import type { TextProps } from './editProps'
 import type { Status } from './common'
 import type { Material } from './material'
 import type { OptionsProps } from './editProps'
+import type { Survey } from './api'
 
 export interface Actions {
   setTextStatus: (textProps: TextProps, text: string) => void
@@ -72,4 +73,5 @@ export interface EditorStore extends Actions {
   initStore: () => void
   removeCom: (index: number) => void
   resetComs: () => void
+  setStore: (storeStatus: Survey) => void
 }

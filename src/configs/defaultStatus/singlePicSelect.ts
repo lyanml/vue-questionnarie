@@ -15,7 +15,7 @@ import type { Status } from '@/types'
 export default function (): Status {
   return {
     type: markRaw(SinglePicSelect),
-    name: 'multi-select',
+    name: 'single-pic-select',
     id: uuidv4(),
     status: {
       title: {

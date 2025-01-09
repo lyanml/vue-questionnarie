@@ -210,7 +210,7 @@ const router = createRouter({
       ],
     },
     {
-      path: '/editor',
+      path: '/editor/:id(\\d+)?',
       name: 'editor',
       component: () => import('@/views/EditorView/Index.vue'),
       children: [
@@ -225,6 +225,11 @@ const router = createRouter({
           component: () => import('@/views/EditorView/LeftSide/Outline.vue'),
         },
       ],
+    },
+    {
+      path: '/preview/:id(\\d+)?',
+      name: 'preview',
+      component: () => import('@/views/Preview.vue'),
     },
   ],
 })

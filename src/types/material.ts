@@ -1,3 +1,5 @@
+import type { VueComType } from './common'
+
 // 题目类型
 export type SurveyComName =
   | 'single-select'
@@ -37,6 +39,11 @@ export type EditComName =
   | 'size-editor'
   | 'weight-editor'
   | 'italic-editor'
+  | 'text-input-type-editor'
+  | 'text-type-editor'
+  | 'pic-options-editor'
+  | 'date-time-type-editor'
+  | 'rate-text-editor'
 
 const SurveyComNameArr: SurveyComName[] = [
   'single-select',
@@ -67,4 +74,9 @@ const SurveyComNameArr: SurveyComName[] = [
 ]
 export function isSurveyComName(value: string): value is SurveyComName {
   return SurveyComNameArr.includes(value as SurveyComName)
+}
+
+export type componentName = Material | EditComName
+export type ComponentMap = {
+  [key in componentName]: VueComType
 }

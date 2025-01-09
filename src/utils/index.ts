@@ -12,6 +12,7 @@ import {
   isValueStatusArray,
   isPicTitleDescArray,
 } from '@/types'
+
 export function getTextStatus(props: TextProps) {
   if (props && isTextProps(props)) {
     return props.status

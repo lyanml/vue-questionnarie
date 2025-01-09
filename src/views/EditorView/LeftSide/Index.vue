@@ -30,8 +30,14 @@ const tabs = [
   { name: 'outline', title: '大纲', icon: Memo },
 ]
 
+const id = route.params.id
+
 const switchRouter = (name: string) => {
-  router.push(`/editor/${name}`)
+  if (id) {
+    router.push(`/editor/${id}/${name}`)
+  } else {
+    router.push(`/editor/${name}`)
+  }
 }
 </script>
 
@@ -42,7 +48,7 @@ const switchRouter = (name: string) => {
   position: fixed;
   left: 20px;
   top: 70px;
-  background-color: var(--whiter);
+  background-color: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-md);
   .tabs {

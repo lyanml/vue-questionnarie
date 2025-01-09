@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <Header />
+      <Header :isEditor="true" :id="id" />
     </div>
     <!-- 主体区域 -->
     <div class="container">
@@ -26,15 +26,36 @@ import type {
   GetLink,
   OptionsStatus,
   PicLink,
+  Status,
   TypeStatus,
   UpdateStatus,
 } from '@/types'
 import { ElMessage } from 'element-plus'
-import { provide } from 'vue'
+import { computed, provide } from 'vue'
 
 import { useEditorStore } from '@/stores/useEditor'
+import { useRoute } from 'vue-router'
+import { getSurveyById } from '@/api/surveyApi'
+import { restoreComponentStatus } from '@/utils/hooks'
+
 const store = useEditorStore() as unknown as EditorStore
 store.initStore()
+
+const route = useRoute()
+const id = computed(() => (route.params.id ? String(route.params.id) : undefined))
+if (id.value) {
+  getSurveyById(Number(id.value)).then((res) => {
+    if (res) {
+      console.log(res.data)
+      const coms = JSON.parse(res.data.coms) as Status[]
+      Object.assign(res.data, { coms })
+      console.log(res.data)
+
+      restoreComponentStatus(res.data.coms)
+      store.setStore(res.data)
+    }
+  })
+}
 
 const updateStatus: UpdateStatus = (
   configKey: string,
@@ -64,7 +85,7 @@ provide('getPicLink', getPicLink)
 <style lang="scss" scoped>
 .header {
   width: 100%;
-  background-color: var(--whiter);
+  background-color: var(--white);
   position: fixed;
   top: 0;
   z-index: 10;

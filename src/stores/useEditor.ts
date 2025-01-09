@@ -13,7 +13,7 @@ import {
   setUse,
   setWeight,
 } from './action'
-import { isSurveyComName, type Status, type TypeStatus } from '@/types'
+import { isSurveyComName, type Status, type Survey, type TypeStatus } from '@/types'
 import textNoteDefaultStatus from '@/configs/defaultStatus/TextNote'
 import { v4 as uuidv4 } from 'uuid'
 // 编辑器
@@ -262,6 +262,16 @@ export const useEditorStore = defineStore('editor', {
         this.surveyCount--
       }
       this.coms.splice(index, 1)
+    },
+    resetComs() {
+      this.surveyCount = 0
+      this.currentComponentIndex = -1
+      this.coms = initComs()
+    },
+    setStore(storeStatus: Survey) {
+      this.surveyCount = storeStatus.surveyCount
+      this.currentComponentIndex = -1
+      this.coms = storeStatus.coms
     },
   },
 })

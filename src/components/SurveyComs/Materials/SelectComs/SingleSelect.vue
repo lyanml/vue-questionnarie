@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import MaterialsHeader from '../../Common/MaterialsHeader.vue'
+import MaterialsHeader from '@/components/SurveyComs/Common/MaterialsHeader.vue'
 import {
   getCurrentStatus,
   getStringStatus,
