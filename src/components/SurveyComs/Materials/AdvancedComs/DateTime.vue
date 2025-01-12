@@ -22,6 +22,7 @@
       :type="computedState.type?.value"
       placeholder="请选择日期"
       @click.stop
+      @change="emitAnswer"
     />
   </div>
 </template>
@@ -42,7 +43,8 @@ const props = defineProps<{
   nums: number
 }>()
 
-const datetimeValue = ref<Date>(new Date())
+const datetimeValue = ref<Date>()
+
 const computedState = computed(() => ({
   title: getTextStatus(props.status.title),
   desc: getTextStatus(props.status.desc),
@@ -57,6 +59,10 @@ const computedState = computed(() => ({
   titleColor: getTextStatus(props.status.titleColor),
   descColor: getTextStatus(props.status.descColor),
 }))
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', datetimeValue.value)
+}
 </script>
 
 <style scoped lang="scss"></style>

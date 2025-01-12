@@ -14,7 +14,7 @@
       :descColor="computedState.descColor"
     />
     <div class="flex wrap">
-      <el-checkbox-group v-model="checkboxValue" class="flex wrap" @click.stop>
+      <el-checkbox-group v-model="checkboxValue" class="flex wrap" @click.stop @change="emitAnswer">
         <el-checkbox
           v-for="(item, index) in computedState.options"
           class="picOption flex mb-15"
@@ -61,6 +61,11 @@ const computedState = computed(() => ({
 }))
 
 const checkboxValue = ref<string[]>([])
+
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', checkboxValue.value)
+}
 </script>
 <style lang="scss" scoped>
 .picOption {

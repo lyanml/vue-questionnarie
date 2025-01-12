@@ -53,7 +53,7 @@ const props = defineProps({
 })
 const imageUrl = ref('')
 
-const getPicLink = inject<GetLink>('getPicLink')
+const getPicLink = inject<GetLink>('getPicLink', () => {})
 
 watch(
   () => props.value,

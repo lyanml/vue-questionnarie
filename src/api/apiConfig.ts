@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { type AxiosInstance, type AxiosResponse } from 'axios'
+import axios, { AxiosError, type AxiosInstance, type AxiosResponse } from 'axios'
 
 // 创建 Axios 实例
 const api: AxiosInstance = axios.create({
@@ -14,7 +14,7 @@ api.interceptors.request.use(
     // config.headers['Authorization'] = 'Bearer ' + getToken();
     return config
   },
-  (error: any) => {
+  (error: AxiosError) => {
     // 更详细的错误处理
     console.error('请求错误:', error.message)
     return Promise.reject(error)

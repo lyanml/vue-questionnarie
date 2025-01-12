@@ -14,7 +14,7 @@
       :descColor="computedState.descColor"
     />
     <div class="radio-group">
-      <el-checkbox-group v-model="checkboxValue" @click.stop>
+      <el-checkbox-group v-model="checkboxValue" @click.stop @change="emitAnswer">
         <el-checkbox v-for="(item, index) in computedState.options" :value="item" :key="index">
           {{ item }}
         </el-checkbox>
@@ -55,4 +55,9 @@ const computedState = computed(() => ({
 }))
 
 const checkboxValue = ref<string[]>([])
+
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', checkboxValue.value)
+}
 </script>

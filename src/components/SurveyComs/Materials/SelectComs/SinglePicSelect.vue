@@ -14,7 +14,7 @@
       :descColor="computedState.descColor"
     />
     <div class="flex wrap">
-      <el-radio-group v-model="radioValue" class="flex wrap" @click.stop>
+      <el-radio-group v-model="radioValue" class="flex wrap" @click.stop @change="emitAnswer">
         <el-radio
           v-for="(item, index) in computedState.options"
           class="picOption flex mb-15"
@@ -59,9 +59,13 @@ const computedState = computed(() => ({
   titleColor: getTextStatus(props.status.titleColor),
   descColor: getTextStatus(props.status.descColor),
 }))
-console.log(computedState.value.options, 'singlePicSelect')
 
 const radioValue = ref<string>('')
+
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', radioValue.value)
+}
 </script>
 <style lang="scss" scoped>
 .picOption {

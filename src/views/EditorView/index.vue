@@ -47,11 +47,12 @@ if (id.value) {
   getSurveyById(Number(id.value)).then((res) => {
     if (res) {
       console.log(res.data)
+      if (!res.data.coms) return
       const coms = JSON.parse(res.data.coms) as Status[]
       Object.assign(res.data, { coms })
       console.log(res.data)
 
-      restoreComponentStatus(res.data.coms)
+      restoreComponentStatus(coms)
       store.setStore(res.data)
     }
   })

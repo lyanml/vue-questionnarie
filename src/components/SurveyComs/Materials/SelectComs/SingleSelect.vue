@@ -14,7 +14,7 @@
       :descColor="computedState.descColor"
     />
     <div class="radio-group">
-      <el-radio-group v-model="radioValue" @click.stop>
+      <el-radio-group v-model="radioValue" @click.stop @change="emitAnswer">
         <el-radio v-for="(item, index) in computedState.options" :value="item" :key="index">
           {{ item }}
         </el-radio>
@@ -55,4 +55,9 @@ const computedState = computed(() => ({
 }))
 
 const radioValue = ref<string>('')
+
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', radioValue.value)
+}
 </script>

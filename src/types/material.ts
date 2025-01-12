@@ -52,6 +52,8 @@ const SurveyComNameArr: SurveyComName[] = [
   'single-pic-select',
   'multi-pic-select',
   'text-input',
+  'rate-score',
+  'date-time',
   'personal-info-name',
   'personal-info-id',
   'personal-info-tel',
@@ -63,8 +65,6 @@ const SurveyComNameArr: SurveyComName[] = [
   'personal-info-age',
   'personal-info-education',
   'personal-info-career',
-  'rate-score',
-  'date-time',
   'personal-info-birth',
   'personal-info-collage',
   'personal-info-major',
@@ -79,4 +79,36 @@ export function isSurveyComName(value: string): value is SurveyComName {
 export type componentName = Material | EditComName
 export type ComponentMap = {
   [key in componentName]: VueComType
+}
+
+const useForPDFComNameArr: Material[] = [
+  // 'option-select',
+  // 'rate-score',
+  // 'date-time',
+  'single-select',
+  'multi-select',
+  'single-pic-select',
+  'multi-pic-select',
+  'text-input',
+  'text-note',
+  'personal-info-name',
+  'personal-info-id',
+  'personal-info-tel',
+  'personal-info-wechat',
+  'personal-info-qq',
+  'personal-info-email',
+  'personal-info-address',
+  'personal-info-gender',
+  'personal-info-age',
+  'personal-info-education',
+  'personal-info-career',
+  'personal-info-collage',
+  'personal-info-major',
+  'personal-info-industry',
+  'personal-info-company',
+  'personal-info-position',
+]
+
+export function isUseForPDF(value: string): value is SurveyComName {
+  return useForPDFComNameArr.includes(value as SurveyComName)
 }

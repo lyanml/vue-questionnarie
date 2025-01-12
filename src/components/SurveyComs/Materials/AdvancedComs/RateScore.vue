@@ -25,6 +25,7 @@
       allow-half
       clearable
       @click.stop
+      @change="emitAnswer"
     />
   </div>
 </template>
@@ -61,6 +62,10 @@ const computedState = computed(() => ({
   titleColor: getTextStatus(props.status.titleColor),
   descColor: getTextStatus(props.status.descColor),
 }))
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', rateValue.value)
+}
 </script>
 
 <style scoped lang="scss"></style>

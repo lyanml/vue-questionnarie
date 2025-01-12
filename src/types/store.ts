@@ -75,3 +75,11 @@ export interface EditorStore extends Actions {
   resetComs: () => void
   setStore: (storeStatus: Survey) => void
 }
+export type SurveyOnlineData = {
+  surveyCount: number
+  coms: Status[]
+}
+
+export type Answer = {
+  [key: number]: string | number | Date
+}

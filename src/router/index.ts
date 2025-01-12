@@ -231,6 +231,11 @@ const router = createRouter({
       name: 'preview',
       component: () => import('@/views/Preview.vue'),
     },
+    {
+      path: '/online/:id',
+      name: 'online',
+      component: () => import('@/views/SurveyOnline.vue'),
+    },
   ],
 })
 

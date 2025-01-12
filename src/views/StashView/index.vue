@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header :isEditor="false" />
     <h1 class="font-weight-100 text-center m0 p0">组件仓库</h1>
     <div class="container mc flex">
       <!-- 导航 -->

@@ -13,8 +13,20 @@
       :descItalic="computedState.descItalic"
       :descColor="computedState.descColor"
     />
-    <el-input v-if="computedState.type === 0" v-model="inputValue" @click.stop />
-    <el-input v-else :rows="5" type="textarea" v-model="inputValue" @click.stop />
+    <el-input
+      v-if="computedState.type === 0"
+      v-model="inputValue"
+      @click.stop
+      @input="emitAnswer"
+    />
+    <el-input
+      v-else
+      :rows="5"
+      type="textarea"
+      v-model="inputValue"
+      @click.stop
+      @input="emitAnswer"
+    />
   </div>
 </template>
 
@@ -46,4 +58,9 @@ const computedState = computed(() => ({
 }))
 
 const inputValue = ref<string>('')
+
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', inputValue.value)
+}
 </script>

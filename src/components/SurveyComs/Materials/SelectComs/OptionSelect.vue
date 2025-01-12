@@ -19,6 +19,7 @@
       size="large"
       style="width: 240px"
       @click.stop
+      @change="emitAnswer"
     >
       <el-option
         v-for="(item, index) in computedState.options"
@@ -62,4 +63,9 @@ const computedState = computed(() => ({
 }))
 
 const optionValue = ref<string>('')
+
+const emits = defineEmits(['updateAnswer'])
+const emitAnswer = () => {
+  emits('updateAnswer', optionValue.value)
+}
 </script>
